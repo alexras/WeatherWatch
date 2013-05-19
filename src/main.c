@@ -25,6 +25,9 @@ PBL_APP_INFO(MY_UUID,
 
 #define WEATHER_HTTP_COOKIE 1949327671
 
+// Set this to the address of your server
+#define SERVER_URL "http://garply.servebeer.com:9863"
+
 static Window window;
 static TimeLayer time_layer;
 static WeatherLayer weather_layer;
@@ -143,16 +146,22 @@ void request_weather() {
   }
   // Build the HTTP request
   DictionaryIterator *body;
-  HTTPResult result = http_out_get("http://pwdb.kathar.in/pebble/weather2.php", WEATHER_HTTP_COOKIE, &body);
+  HTTPResult result = http_out_get(SERVER_URL, WEATHER_HTTP_COOKIE, &body);
+
   if(result != HTTP_OK) {
+    weather_layer_set_temperature(&weather_layer, -(result - 1000));
     weather_layer_set_icon(&weather_layer, WEATHER_ICON_NO_WEATHER);
     return;
   }
+
   dict_write_int32(body, WEATHER_KEY_LATITUDE, our_latitude);
   dict_write_int32(body, WEATHER_KEY_LONGITUDE, our_longitude);
   dict_write_cstring(body, WEATHER_KEY_UNIT_SYSTEM, UNIT_SYSTEM);
+  result = http_out_send();
+
   // Send it.
-  if(http_out_send() != HTTP_OK) {
+  if(result != HTTP_OK) {
+    weather_layer_set_temperature(&weather_layer, -(result - 1000));
     weather_layer_set_icon(&weather_layer, WEATHER_ICON_NO_WEATHER);
     return;
   }

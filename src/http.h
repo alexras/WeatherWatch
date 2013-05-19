@@ -5,21 +5,21 @@
 
 // Shared values.
 typedef enum {
-	HTTP_OK 							= 0,
-	HTTP_SEND_TIMEOUT 					= APP_MSG_SEND_TIMEOUT,
-	HTTP_SEND_REJECTED					= APP_MSG_SEND_REJECTED,
-	HTTP_NOT_CONNECTED					= APP_MSG_NOT_CONNECTED,
-	HTTP_BRIDGE_NOT_RUNNING				= APP_MSG_APP_NOT_RUNNING,
-	HTTP_INVALID_ARGS					= APP_MSG_INVALID_ARGS,
-	HTTP_BUSY							= APP_MSG_BUSY,
-	HTTP_BUFFER_OVERFLOW				= APP_MSG_BUFFER_OVERFLOW,
-	HTTP_ALREADY_RELEASED				= APP_MSG_ALREADY_RELEASED,
-	HTTP_CALLBACK_ALREADY_REGISTERED	= APP_MSG_CALLBACK_ALREADY_REGISTERED,
-	HTTP_CALLBACK_NOT_REGISTERED		= APP_MSG_CALLBACK_NOT_REGISTERED,
-	HTTP_NOT_ENOUGH_STORAGE				= DICT_NOT_ENOUGH_STORAGE << 12,
-	HTTP_INVALID_DICT_ARGS				= DICT_INVALID_ARGS << 12,
-	HTTP_INTERNAL_INCONSISTENCY			= DICT_INTERNAL_INCONSISTENCY << 12,
-	HTTP_INVALID_BRIDGE_RESPONSE		= 1 << 17
+  HTTP_OK 							= 0,
+  HTTP_SEND_TIMEOUT 					= APP_MSG_SEND_TIMEOUT,
+  HTTP_SEND_REJECTED					= APP_MSG_SEND_REJECTED,
+  HTTP_NOT_CONNECTED					= APP_MSG_NOT_CONNECTED,
+  HTTP_BRIDGE_NOT_RUNNING				= APP_MSG_APP_NOT_RUNNING,
+  HTTP_INVALID_ARGS					= APP_MSG_INVALID_ARGS,
+  HTTP_BUSY							= APP_MSG_BUSY,
+  HTTP_BUFFER_OVERFLOW				= APP_MSG_BUFFER_OVERFLOW,
+  HTTP_ALREADY_RELEASED				= APP_MSG_ALREADY_RELEASED,
+  HTTP_CALLBACK_ALREADY_REGISTERED	= APP_MSG_CALLBACK_ALREADY_REGISTERED,
+  HTTP_CALLBACK_NOT_REGISTERED		= APP_MSG_CALLBACK_NOT_REGISTERED,
+  HTTP_NOT_ENOUGH_STORAGE				= DICT_NOT_ENOUGH_STORAGE << 12,
+  HTTP_INVALID_DICT_ARGS				= DICT_INVALID_ARGS << 12,
+  HTTP_INTERNAL_INCONSISTENCY			= DICT_INTERNAL_INCONSISTENCY << 12,
+  HTTP_INVALID_BRIDGE_RESPONSE		= 1 << 17
 } HTTPResult;
 
 // HTTP Request callbacks
@@ -39,16 +39,16 @@ typedef void(*HTTPLocationHandler)(float latitude, float longitude, float altitu
 
 // HTTP stuff
 typedef struct {
-	HTTPRequestFailedHandler failure;
-	HTTPRequestSucceededHandler success;
-	HTTPReconnectedHandler reconnect;
-	HTTPPhoneCookieGetHandler cookie_get;
-	HTTPPhoneCookieBatchGetHandler cookie_batch_get;
-	HTTPPhoneCookieSetHandler cookie_set;
-	HTTPPhoneCookieFsyncHandler cookie_fsync;
-	HTTPPhoneCookieDeleteHandler cookie_delete;
-	HTTPTimeHandler time;
-	HTTPLocationHandler location;
+  HTTPRequestFailedHandler failure;
+  HTTPRequestSucceededHandler success;
+  HTTPReconnectedHandler reconnect;
+  HTTPPhoneCookieGetHandler cookie_get;
+  HTTPPhoneCookieBatchGetHandler cookie_batch_get;
+  HTTPPhoneCookieSetHandler cookie_set;
+  HTTPPhoneCookieFsyncHandler cookie_fsync;
+  HTTPPhoneCookieDeleteHandler cookie_delete;
+  HTTPTimeHandler time;
+  HTTPLocationHandler location;
 } HTTPCallbacks;
 
 // HTTP requests
